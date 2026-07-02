@@ -1,0 +1,53 @@
+.hero-banner.formAdded {
+    height: 510px;
+}
+
+@media (max-width: 767px) {
+    .csr-carousel .box1 .hd3 {
+        margin-bottom: 15px;
+        padding-right: 75px;
+    }
+}
+
+
+/* This is only for temp  */
+.fIxEd_botm_Mob {
+    display: none;
+    width: 50%;
+    left: 0;
+    position: fixed;
+    z-index: 9;
+}
+
+.enquire-now {
+    position: absolute;
+    font: italic 400 14px/1.2 "mont-semibold", sans-serif;
+    color: #FFFFFF;
+    left: 50%;
+    right: auto;
+    -khtml-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: 10%;
+    letter-spacing: .5vw;
+    text-transform: uppercase;
+    transition: all .3s linear;
+}
+
+.fIxEd_botm_Mob .enquire-now {
+    width: 50%;
+    left: 0;
+    transform: translate(0px);
+    background: #9c6e42;
+    padding: 15px 30px;
+    bottom: 0;
+    position: fixed;
+    z-index: 9;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .fIxEd_botm_Mob {
+        display: block;
+    }
+
+}

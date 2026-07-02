@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="505px" height="488px" viewBox="0 0 505 488" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 12</title>
+    <defs>
+        <circle id="path-1" cx="228.5" cy="228.5" r="228.5"></circle>
+    </defs>
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Insvestor_shareholders-corner-Copy" transform="translate(-106.000000, -1203.000000)">
+            <g id="Group-12" transform="translate(106.000000, 1203.000000)">
+                <g id="Path-2" transform="translate(48.000000, 31.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#9A6E41" xlink:href="#path-1"></use>
+                    <polygon id="Path-4" fill="#6D4A2A" mask="url(#mask-2)" points="52.3805302 49.7568814 241.681662 244.862069 429.235654 -44.9857341 121.024346 -38.4303508"></polygon>
+                    <polygon id="Path-3" fill="#F8F7F5" mask="url(#mask-2)" points="155.093568 3.5 228.5 235 398.732907 139.283347 398.732907 -2.13162821e-14 220.687108 -44.9857341"></polygon>
+                    <polygon fill="#EEEDE8" mask="url(#mask-2)" points="228 -3.15501367 228.5 228.482759 62 411.11019 214 521.757206 413.140556 521.757206 529.25 266.5 415 39.9511964 277.041743 -23.5300567"></polygon>
+                </g>
+                <text id="22.22%" font-family="Mont-Book, Mont" font-size="20" font-weight="300" line-spacing="20" fill="#9A6E41">
+                    <tspan x="0" y="152">22.22%</tspan>
+                </text>
+                <text id="7.32%" font-family="Mont-Book, Mont" font-size="20" font-weight="300" line-spacing="20" fill="#9A6E41">
+                    <tspan x="99" y="45">7.32%</tspan>
+                </text>
+                <text id="2.76%" font-family="Mont-Book, Mont" font-size="20" font-weight="300" line-spacing="20" fill="#9A6E41">
+                    <tspan x="217" y="15">2.76%</tspan>
+                </text>
+                <text id="67.70%" font-family="Mont-Book, Mont" font-size="20" font-weight="300" line-spacing="20" fill="#9A6E41">
+                    <tspan x="385" y="44">67.70%</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="30px" viewBox="0 0 19 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrow</title>
+    <defs>
+        <filter color-interpolation-filters="auto" id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.603922 0 0 0 0 0.431373 0 0 0 0 0.254902 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g filter="url(#filter-1)" id="arrow">
+            <g transform="translate(9.500000, 15.000000) scale(-1, 1) translate(-9.500000, -15.000000) translate(1.000000, 1.000000)">
+                <path d="M15.8316051,16.8090572 L5.68966378,26.8462981 C4.11302185,28.3845673 1.57664194,28.3845673 0,26.8462981 L0,1.15370192 C1.57664194,-0.384567308 4.11302185,-0.384567308 5.68966378,1.15370192 L15.8316051,11.1909428 C17.389465,12.747758 17.389465,15.252242 15.8316051,16.8090572 Z" id="Path" stroke="#1D1D1B" stroke-width="2" fill="#D8D8D8"></path>
+            </g>
+        </g>
+    </g>
+</svg>
