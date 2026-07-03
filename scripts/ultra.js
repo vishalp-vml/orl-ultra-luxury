@@ -39,98 +39,128 @@ $('.tab').on('click', function (e) {
 (function ($) {
     var $flagship = $('.flagship-int');
 
-    // tag original items with a stable slide index
-    $flagship.find('.item').each(function (i) {
+    if (!$flagship.length || typeof Swiper === 'undefined') {
+        return;
+    }
+
+    // tag slides with a stable slide index
+    $flagship.find('.swiper-slide').each(function (i) {
         $(this).attr('data-slide', i + 1);
     });
 
-    $flagship.owlCarousel({
-        items: 1,
-        nav: false,
-        responsive: {
-            0: {
-                dots: true,
-                nav: false,
-                items: 1,
-                stagePadding: 40,
-                margin: 20
+    var swiper = new Swiper('.flagship-int', {
+        cssMode: true,
+        slidesPerView: 1.05,
+        spaceBetween: 20,
+        slidesOffsetBefore: 30,
+        slidesOffsetAfter: 30,
+        simulateTouch: true,  
+        grabCursor: true,
+        breakpoints: {
+            768: {
+                slidesPerView: 1.05,
+                spaceBetween: 20,
+                slidesOffsetBefore: 30,
+                slidesOffsetAfter: 30,
             },
-            1000: {
-                items: 1,
-                margin: 60,
-                stagePadding: 120,
-                dots: false,
-                nav: false,
-            },
-        }
+            1024: {
+                slidesPerView: 1.05,
+                spaceBetween: 80,
+                slidesOffsetBefore: 120,
+                slidesOffsetAfter: 120,
+            }
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        mousewheel: true,
+        keyboard: true,
     });
 
-    if ($(window).width() >= 768) {
+    function getActiveSlide() {
+        return $(swiper.slides[swiper.activeIndex]);
+    }
 
-    function applySlideState($activeItem) {
-        var slideNum = $activeItem.data('slide') || 1;
+    function resetProjectContent() {
+        $flagship.find('.project-ctnt')
+            .css({ 'opacity': '0', 'animation-delay': '0s' })
+            .removeClass('fadeInRight fadeInLeft');
+    }
+
+    function applySlideState($activeSlide) {
+        var slideNum = $activeSlide.data('slide') || 1;
         var $section = $('.our-projects-section');
         $section.removeClass('slide1 slide2').addClass('slide' + slideNum);
-        // remove animation, delay and reset opacity to 0 for all items
-        $flagship.find('.project-ctnt').each(function () {
-            $(this).css({'animation-delay': '0s', 'opacity': '0'}).removeClass('fadeInRight');
-        });
+
+        if ($(window).width() < 768) {
+            $flagship.find('.project-ctnt').css({ 'opacity': '1', 'animation-delay': '0s' });
+            return;
+        }
+
+        resetProjectContent();
+
         // add delay then animation to the active project's content (reflow to restart)
-        var $activeCt = $activeItem.find('.project-ctnt');
-        $activeCt.css({'animation-delay': '.5s', 'opacity': '1'});
+        var $activeCt = $activeSlide.find('.project-ctnt');
+        $activeCt.css({ 'animation-delay': '.5s', 'opacity': '1' });
         if ($activeCt[0]) { void $activeCt[0].offsetWidth; }
-        $activeCt.addClass('fadeInRight'); 
+        $activeCt.addClass('fadeInRight');
     }
 
-    // initial state: don't animate until section is visible
-    var $initialActive = $flagship.find('.owl-item.active .item').first();
-    if (!$initialActive.length) {
-        $initialActive = $flagship.find('.item').first();
-    }
+    var $initialActive = getActiveSlide();
 
     var sectionSeen = false;
     function onSectionVisible() {
         if (sectionSeen) return;
         sectionSeen = true;
-        applySlideState($initialActive);
+        applySlideState(getActiveSlide());
         if (observer) { observer.disconnect(); }
     }
 
-    // IntersectionObserver to trigger the first slide animation when section enters viewport
-    var sectionEl = document.querySelector('.our-projects-section');
-    var observer = null;
-    if (sectionEl && 'IntersectionObserver' in window) {
-        observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    onSectionVisible();
-                }
-            });
-        }, { threshold: 0.25 });
-        observer.observe(sectionEl);
+    if ($(window).width() >= 768) {
+        // IntersectionObserver to trigger the first slide animation when section enters viewport
+        var sectionEl = document.querySelector('.our-projects-section');
+        var observer = null;
+        if (sectionEl && 'IntersectionObserver' in window) {
+            observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        onSectionVisible();
+                    }
+                });
+            }, { threshold: 0.25 });
+            observer.observe(sectionEl);
+        } else {
+            // fallback: trigger immediately
+            onSectionVisible();
+        }
     } else {
-        // fallback: trigger immediately
-        onSectionVisible();
+        applySlideState($initialActive);
     }
 
-    // update on slide translate start
-    $flagship.on('translate.owl.carousel', function (event) {
-        $flagship.find('.project-ctnt').css({'opacity': '0', 'animation-delay': '0s'}).removeClass('fadeInRight');
+    swiper.on('slideChangeTransitionStart', function () {
+        if ($(window).width() < 768) {
+            return;
+        }
+        resetProjectContent();
     });
 
-    // update on slide translated
-    $flagship.on('translated.owl.carousel', function (event) {
-        var $activeItem = $(event.target).find('.owl-item.active .item').first();
-        if (!$activeItem.length) {
-            $activeItem = $(event.target).find('.item').eq(event.item.index).first();
+    function onSwiperSlideChange() {
+        var $activeSlide = getActiveSlide();
+        if ($(window).width() >= 768) {
+            // only animate on translated if section has been seen
+            if (sectionSeen) {
+                applySlideState($activeSlide);
+            }
+        } else {
+            applySlideState($activeSlide);
         }
-        // only animate on translated if section has been seen
-        if (sectionSeen) {
-            applySlideState($activeItem);
-        }
-    });
-
     }
+
+    swiper.on('slideChange', onSwiperSlideChange);
 
 })(jQuery);
 

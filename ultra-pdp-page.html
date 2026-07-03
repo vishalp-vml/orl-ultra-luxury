@@ -189,6 +189,11 @@
   </section>
 
   <section class="ultra-residances">
+    <audio id="beep-one" preload="auto">
+      <source src="images/ultra/beep.mp3" type="audio/mpeg">
+      <source src="images/ultra/beep.ogg" type="audio/ogg">
+      Your browser isn't invited for super fun time.
+    </audio>
     <div class="container">
       <h3 class="hd4">The Residences</h3>
       <h4 class="ultra-sub-title MT20">An architectural gem defined by precise proportions, standing with quiet
@@ -212,10 +217,12 @@
           <div class="gallery">
             <div class="row row-1">
               <div class="item">
+                <div class="item-icons music-ic"><a href="" class="volume-ic"></a></div>
                 <div class="item-icons"><a href="" class="rise act">Sunrise</a><a href="" class="set">Sunset</a></div>
                 <img src="images/ultra/utr-1.jpg" alt="">
               </div>
               <div class="item">
+                <div class="item-icons music-ic"><a href="" class="volume-ic"></a></div>
                 <div class="item-icons"><a href="" class="rise act">Sunrise</a><a href="" class="set">Sunset</a></div>
                 <img src="images/ultra/utr-2.jpg" alt="">
               </div>
@@ -223,10 +230,12 @@
 
             <div class="row row-2">
               <div class="item">
+                <div class="item-icons music-ic"><a href="" class="volume-ic"></a></div>
                 <div class="item-icons"><a href="" class="rise act">Sunrise</a><a href="" class="set">Sunset</a></div>
                 <img src="images/ultra/utr-3.jpg" alt="">
               </div>
               <div class="item">
+                <div class="item-icons music-ic"><a href="" class="volume-ic"></a></div>
                 <div class="item-icons"><a href="" class="rise act">Sunrise</a><a href="" class="set">Sunset</a></div>
                 <img src="images/ultra/utr-4.jpg" class="img-sunrise" alt="">
                 <img src="images/ultra/utr-1.jpg" class="img-sunset hide" alt="">
@@ -235,6 +244,7 @@
 
             <div class="row row-3">
               <div class="item">
+                <div class="item-icons music-ic"><a href="" class="volume-ic"></a></div>
                 <div class="item-icons"><a href="" class="rise act">Sunrise</a><a href="" class="set">Sunset</a></div>
                 <img src="images/ultra/big_image.png" class="img-sunrise" alt="">
                 <img src="images/ultra/big_image_1.png" class="img-sunset hide" alt="">
@@ -658,6 +668,64 @@
   <script src="scripts/main.js"></script>
   <!-- New JS for Ultra page -->
   <script src="scripts/ultra.js"></script>
+  <script>
+    (function () {
+      var audio = document.getElementById('beep-one');
+      var hoverItems = document.querySelectorAll('.gallery .item');
+      var toggleButtons = document.querySelectorAll('.item-icons.music-ic .volume-ic');
+
+      if (!audio) return;
+
+      var hoverActive = false;
+      var togglePaused = false;
+
+      function playAudio() {
+        if (togglePaused) return;
+        audio.currentTime = 0;
+        audio.play().catch(function () {});
+      }
+
+      function stopAudio(resetTime) {
+        audio.pause();
+        if (resetTime !== false) {
+          audio.currentTime = 0;
+        }
+      }
+
+      hoverItems.forEach(function (item) {
+        item.addEventListener('mouseenter', function () {
+          hoverActive = true;
+          playAudio();
+        });
+
+        item.addEventListener('mouseleave', function () {
+          hoverActive = false;
+          if (!togglePaused) {
+            stopAudio();
+          }
+        });
+      });
+
+      toggleButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          togglePaused = !togglePaused;
+
+          if (togglePaused) {
+            button.classList.remove('is-playing');
+            stopAudio(false);
+          } else {
+            button.classList.add('is-playing');
+            if (hoverActive) {
+              playAudio();
+            }
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 
 </html>

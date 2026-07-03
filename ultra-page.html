@@ -194,12 +194,22 @@
     </div>
     
   </section>
-
-  <section class="our-projects-section slide1">
-    <div class="owl-carousel flagship-int">
-      <div class="item">
-        <div class="project-box">
-          <figure><img src="images/ultra/faieview.jpg" alt=""></figure>
+     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.css"
+    />
+    <style>
+      .swiper-slide-active{
+        overflow: hidden;
+      }
+    </style>
+<section class="our-projects-section slide1">
+  <!-- Swiper -->
+    <div class="swiper flagship-int">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="project-box">
+          <figure><img src="images/ultra/faieview.jpg" alt="" class="img-fluid"></figure>
           <div class="project-ctnt animated">
             <p class="fs-14b">WORLI</p>
             <figure><img src="images/ultra/fairview-logo.svg" alt=""></figure>
@@ -208,9 +218,9 @@
                 DiscoveR <span class="icon-cta-icon"></span></a></div>
           </div>
         </div>
-      </div>
-      <div class="item">
-        <div class="project-box">
+        </div>
+        <div class="swiper-slide">
+          <div class="project-box">
           <figure><img src="images/ultra/oceanic.jpg" alt=""></figure>
           <div class="project-ctnt op1 animated">
             <p class="fs-14b">WORLI</p>
@@ -220,9 +230,14 @@
                 DiscoveR <span class="icon-cta-icon"></span></a></div>
           </div>
         </div>
+        </div>
       </div>
     </div>
-  </section>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@14.0.1/swiper-bundle.min.js"></script>
+
+</section>
+
   <section class="more-from-collection">
     <h3 class="hd4">More from the collection</h3>
     <div class="container">
@@ -277,7 +292,7 @@
         </div>
       </div>
 
-      <p class="view-more btm"><a href="javascript:;" class="read-more">View All <span class="icon-cta-icon"></span></a>
+      <p class="view-more btm MT10"><a href="javascript:;" class="read-more">View All <span class="icon-cta-icon"></span></a>
       </p>
     </div>
   </section>
