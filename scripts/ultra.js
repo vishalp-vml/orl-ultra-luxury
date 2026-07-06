@@ -1,4 +1,4 @@
-$('.ultra-residances .item-icons a').on('click', function (e) {
+$('.ultra-residances .item-icons a').not('.volume-ic').on('click', function (e) {
     e.preventDefault();
 
     const $this = $(this);
@@ -54,7 +54,7 @@ $('.tab').on('click', function (e) {
         spaceBetween: 20,
         slidesOffsetBefore: 30,
         slidesOffsetAfter: 30,
-        simulateTouch: true,  
+        simulateTouch: true,
         grabCursor: true,
         breakpoints: {
             768: {
@@ -164,16 +164,75 @@ $('.tab').on('click', function (e) {
 
 })(jQuery);
 
-const box = document.querySelector('.ultra-intro.pdp');
 
-if (box) {
-    box.addEventListener('mousemove', (e) => {
-        const rect = box.getBoundingClientRect();
+(function () {
+    var audio = document.getElementById('beep-one');
+    var hoverItems = document.querySelectorAll('.gallery .item');
+    var toggleButtons = document.querySelectorAll('.item-icons.music-ic .volume-ic');
 
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
+    if (!audio) return;
 
-        box.style.setProperty('--x', `${5 + x * 20}%`);
-        box.style.setProperty('--y', `${-60 + y * 40}%`);
+    var hoverActive = false;
+    var togglePaused = false;
+
+    function playAudio() {
+        if (togglePaused) return;
+        audio.currentTime = 0;
+        audio.play().catch(function () { });
+    }
+
+    function stopAudio(resetTime) {
+        audio.pause();
+        if (resetTime !== false) {
+            audio.currentTime = 0;
+        }
+    }
+
+    hoverItems.forEach(function (item) {
+        item.addEventListener('mouseenter', function () {
+            hoverActive = true;
+            playAudio();
+        });
+
+        item.addEventListener('mouseleave', function () {
+            hoverActive = false;
+            if (!togglePaused) {
+                stopAudio();
+            }
+        });
     });
-}
+
+    toggleButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            togglePaused = !togglePaused;
+
+            if (togglePaused) {
+                button.classList.remove('is-playing');
+                stopAudio(false);
+            } else {
+                button.classList.add('is-playing');
+                if (hoverActive) {
+                    playAudio();
+                }
+            }
+        });
+    });
+})();
+
+
+// const box = document.querySelector('.ultra-intro.pdp');
+
+// if (box) {
+//     box.addEventListener('mousemove', (e) => {
+//         const rect = box.getBoundingClientRect();
+
+//         const x = (e.clientX - rect.left) / rect.width;
+//         const y = (e.clientY - rect.top) / rect.height;
+
+//         box.style.setProperty('--x', `${5 + x * 20}%`);
+//         box.style.setProperty('--y', `${-60 + y * 40}%`);
+//     });
+// }
