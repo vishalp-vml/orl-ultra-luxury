@@ -35,6 +35,23 @@ $('.tab').on('click', function (e) {
     $('.content[data-tab="' + tab + '"]').addClass('act');
 });
 
+const viewLink = document.querySelector('.view-link');
+const viewBox = document.querySelector('.ultra-view-box');
+const popup = document.querySelector('.iframe-view');
+const closeBtn = document.querySelector('.close-iframe'); 
+
+if (viewLink){
+    viewLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    viewBox.classList.add('act'); // Zooms out the image
+    popup.classList.add('act');   // Zooms in the popup
+    });
+
+    closeBtn.addEventListener('click', function() {
+    viewBox.classList.remove('act'); // Zooms image back to 100%
+    popup.classList.remove('act');   // Zooms out popup and hides it
+    });
+}
 
 (function ($) {
     var $flagship = $('.flagship-int');
@@ -79,6 +96,7 @@ $('.tab').on('click', function (e) {
         },
         mousewheel: true,
         keyboard: true,
+        slideToClickedSlide: true,
     });
 
     function getActiveSlide() {
@@ -175,6 +193,14 @@ $('.tab').on('click', function (e) {
     var hoverActive = false;
     var togglePaused = false;
 
+    function setVolumeIconState(isPlaying) {
+        toggleButtons.forEach(function (button) {
+            button.classList.toggle('is-playing', isPlaying);
+        });
+    }
+
+    setVolumeIconState(!togglePaused);
+
     function playAudio() {
         if (togglePaused) return;
         audio.currentTime = 0;
@@ -210,10 +236,10 @@ $('.tab').on('click', function (e) {
             togglePaused = !togglePaused;
 
             if (togglePaused) {
-                button.classList.remove('is-playing');
+                setVolumeIconState(false);
                 stopAudio(false);
             } else {
-                button.classList.add('is-playing');
+                setVolumeIconState(true);
                 if (hoverActive) {
                     playAudio();
                 }
