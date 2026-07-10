@@ -4708,6 +4708,8 @@ h6 {
   }
 }
 
+/* New CSS for the Ultra Intro page */
+
 body {
   font-family: "Mona Sans", sans-serif;
   font-optical-sizing: auto;
@@ -4718,6 +4720,11 @@ body {
 
 .header {
   position: static;
+}
+
+.header .logo{
+  margin-top: -12px;
+  display: inline-block;
 }
 
 .hero-banner {
@@ -4734,6 +4741,12 @@ body {
 @media (max-width: 767px) {
   .hd4 {
     font-size: 28px;
+  }
+  .header .logo{
+    margin-top: 0;
+  }
+  .header .row{
+    align-items: center;
   }
 }
 
@@ -5922,7 +5935,7 @@ body {
 }
 
 .iframe-view{
-  background: #bf662e;
+  background: #F9EFE9;
   position: fixed;
   z-index: 11;
   width: 100%;
