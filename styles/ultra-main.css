@@ -5185,9 +5185,10 @@ body {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    width: 40%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
+    min-height: 45px;
   }
 
   & .ultra-sub-title.op1 {

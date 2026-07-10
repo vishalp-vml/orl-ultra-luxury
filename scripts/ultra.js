@@ -248,7 +248,20 @@ if (viewLink){
     });
 })();
 
+$(document).ready(function () {
 
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function () {
+
+        var $section = $(this).closest('.ultra-tabs');
+
+        $section.find('.ultra-sub-title')
+            .hide()
+            .text($(this).data('title'))
+            .fadeIn(200);
+
+    });
+
+});
 // const box = document.querySelector('.ultra-intro.pdp');
 
 // if (box) {
