@@ -5030,6 +5030,9 @@ body {
   .our-projects-section {
     padding: 60px 0;
   }
+  .our-projects-section .project-box.sld2 .project-ctnt figure img {
+    width: 100%;
+  }
 
   .our-projects-section .project-box .project-ctnt figure img {
     width: 100%;
