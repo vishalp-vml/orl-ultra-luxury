@@ -5,10 +5,13 @@ $('.ultra-residances .item-icons a').not('.volume-ic').on('click', function (e) 
     const $wrapper = $this.closest('.ultra-residances');
     const $item = $this.closest('.item');
 
+    $wrapper.find('.item .set').removeClass('act').siblings('a').addClass('act');
     // Toggle active class on links
     $this.addClass('act')
         .siblings('a')
         .removeClass('act');
+
+    
 
     if ($this.hasClass('set')) {
         $wrapper.addClass('act');
