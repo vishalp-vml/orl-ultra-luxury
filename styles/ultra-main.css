@@ -4814,7 +4814,7 @@ body {
 
 .ultra-intro p {
   width: 80%;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 @media (max-width: 767px) {
@@ -4952,12 +4952,14 @@ body {
   }
 }
 
-.our-projects-section .project-box.sld2 .project-ctnt figure img {
-  width: 180px;
+.our-projects-section .project-box.sld1 .project-ctnt figure img {
+  /* width: 180px; */
+  margin-left: -15px;
 }
 
 .our-projects-section .project-box .project-ctnt figure img {
   width: auto;
+  height: 80px;
 }
 
 .our-projects-section .project-ctnt .fs-14b {
@@ -5088,6 +5090,7 @@ body {
   display: flex;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  align-items: center;
   color: #47330F;
 }
 
@@ -5834,7 +5837,7 @@ body {
     line-height: normal;
     letter-spacing: 0;
     padding: 9px 12px;
-    text-transform: none;
+    /* text-transform: none; */
 
     .icon-cta-icon {
       font-size: 12px;
