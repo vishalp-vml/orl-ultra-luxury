@@ -186,70 +186,70 @@ if (viewLink){
 })(jQuery);
 
 
-(function () {
-    var audio = document.getElementById('beep-one');
-    var hoverItems = document.querySelectorAll('.gallery .item');
-    var toggleButtons = document.querySelectorAll('.item-icons.music-ic .volume-ic');
+// (function () {
+//     var audio = document.getElementById('beep-one');
+//     var hoverItems = document.querySelectorAll('.gallery .item');
+//     var toggleButtons = document.querySelectorAll('.item-icons.music-ic .volume-ic');
 
-    if (!audio) return;
+//     if (!audio) return;
 
-    var hoverActive = false;
-    var togglePaused = false;
+//     var hoverActive = false;
+//     var togglePaused = false;
 
-    function setVolumeIconState(isPlaying) {
-        toggleButtons.forEach(function (button) {
-            button.classList.toggle('is-playing', isPlaying);
-        });
-    }
+//     function setVolumeIconState(isPlaying) {
+//         toggleButtons.forEach(function (button) {
+//             button.classList.toggle('is-playing', isPlaying);
+//         });
+//     }
 
-    setVolumeIconState(!togglePaused);
+//     setVolumeIconState(!togglePaused);
 
-    function playAudio() {
-        if (togglePaused) return;
-        audio.currentTime = 0;
-        audio.play().catch(function () { });
-    }
+//     function playAudio() {
+//         if (togglePaused) return;
+//         audio.currentTime = 0;
+//         audio.play().catch(function () { });
+//     }
 
-    function stopAudio(resetTime) {
-        audio.pause();
-        if (resetTime !== false) {
-            audio.currentTime = 0;
-        }
-    }
+//     function stopAudio(resetTime) {
+//         audio.pause();
+//         if (resetTime !== false) {
+//             audio.currentTime = 0;
+//         }
+//     }
 
-    hoverItems.forEach(function (item) {
-        item.addEventListener('mouseenter', function () {
-            hoverActive = true;
-            playAudio();
-        });
+//     hoverItems.forEach(function (item) {
+//         item.addEventListener('mouseenter', function () {
+//             hoverActive = true;
+//             playAudio();
+//         });
 
-        item.addEventListener('mouseleave', function () {
-            hoverActive = false;
-            if (!togglePaused) {
-                stopAudio();
-            }
-        });
-    });
+//         item.addEventListener('mouseleave', function () {
+//             hoverActive = false;
+//             if (!togglePaused) {
+//                 stopAudio();
+//             }
+//         });
+//     });
 
-    toggleButtons.forEach(function (button) {
-        button.addEventListener('click', function (event) {
-            event.preventDefault();
-            event.stopPropagation();
+//     toggleButtons.forEach(function (button) {
+//         button.addEventListener('click', function (event) {
+//             event.preventDefault();
+//             event.stopPropagation();
 
-            togglePaused = !togglePaused;
+//             togglePaused = !togglePaused;
 
-            if (togglePaused) {
-                setVolumeIconState(false);
-                stopAudio(false);
-            } else {
-                setVolumeIconState(true);
-                if (hoverActive) {
-                    playAudio();
-                }
-            }
-        });
-    });
-})();
+//             if (togglePaused) {
+//                 setVolumeIconState(false);
+//                 stopAudio(false);
+//             } else {
+//                 setVolumeIconState(true);
+//                 if (hoverActive) {
+//                     playAudio();
+//                 }
+//             }
+//         });
+//     });
+// })();
 
 $(document).ready(function () {
 
